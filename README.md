@@ -19,8 +19,15 @@ The repo contains a skeleton iOS application created using XCode 8.3.2. The app 
 
 ### Instructions
 The goal of this exercise is to create a very simple note app by following the tasks below. 
-Try and have each commit represent a completed task. 
-Code should be clear, easy to read, and well tested. 
+
+Try and have each commit represent a completed task.
+
+Code should be:
+* easy to read
+* follow consistent a style guid
+* modular
+* tested if possible
+
 First fork this repository, then commit your changes and create a pull request when you're done (See [How to submit your work?](#how-to-submit-your-work)). 
 The provided files can be used as a guideline, but add or remove whatever other files you need. 
 
