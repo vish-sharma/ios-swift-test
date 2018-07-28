@@ -62,4 +62,14 @@ class NotesViewModel: NSObject {
         return nil
     }
     
+    //MARK: Add/Delete Note
+    
+    func addNewNote(_ newNote: Note) -> Void {
+        print(newNote.message)
+        if newNote.message != "" {
+            self.notesArray?.append(newNote)
+        }
+    }
+    
 }
+

@@ -14,6 +14,8 @@
 		8429C9DF1EAECD2C004A5E2B /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8429C9DE1EAECD2C004A5E2B /* NoteViewController.swift */; };
 		8429C9E21EAECD34004A5E2B /* TestApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8429C9E01EAECD34004A5E2B /* TestApp.xcdatamodeld */; };
 		8429C9E41EAECD48004A5E2B /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8429C9E31EAECD48004A5E2B /* NoteModel.swift */; };
+		BF5942FB210C39FC00CCC245 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5942FA210C39FC00CCC245 /* AddNoteViewController.swift */; };
+		BF5942FD210C3B4800CCC245 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5942FC210C3B4800CCC245 /* AppConstants.swift */; };
 		BF7C1113210BA54E001A700B /* MockNotes.json in Resources */ = {isa = PBXBuildFile; fileRef = BF7C1112210BA54E001A700B /* MockNotes.json */; };
 		BF7C1116210BA582001A700B /* NoteApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C1115210BA582001A700B /* NoteApiManager.swift */; };
 		BF7C1118210BA869001A700B /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C1117210BA869001A700B /* NotesViewModel.swift */; };
@@ -31,6 +33,8 @@
 		8429C9DE1EAECD2C004A5E2B /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		8429C9E11EAECD34004A5E2B /* TestApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestApp.xcdatamodel; sourceTree = "<group>"; };
 		8429C9E31EAECD48004A5E2B /* NoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		BF5942FA210C39FC00CCC245 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		BF5942FC210C3B4800CCC245 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		BF7C1112210BA54E001A700B /* MockNotes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockNotes.json; sourceTree = "<group>"; };
 		BF7C1115210BA582001A700B /* NoteApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteApiManager.swift; sourceTree = "<group>"; };
 		BF7C1117210BA869001A700B /* NotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				8429C9DE1EAECD2C004A5E2B /* NoteViewController.swift */,
+				BF5942FA210C39FC00CCC245 /* AddNoteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				BF7C1112210BA54E001A700B /* MockNotes.json */,
+				BF5942FC210C3B4800CCC245 /* AppConstants.swift */,
 			);
 			path = HelperClasses;
 			sourceTree = "<group>";
@@ -211,9 +217,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8429C9DF1EAECD2C004A5E2B /* NoteViewController.swift in Sources */,
+				BF5942FD210C3B4800CCC245 /* AppConstants.swift in Sources */,
 				8429C9E21EAECD34004A5E2B /* TestApp.xcdatamodeld in Sources */,
 				BF7C1118210BA869001A700B /* NotesViewModel.swift in Sources */,
 				BF7C1116210BA582001A700B /* NoteApiManager.swift in Sources */,
+				BF5942FB210C39FC00CCC245 /* AddNoteViewController.swift in Sources */,
 				8429C9C71EAECCA8004A5E2B /* AppDelegate.swift in Sources */,
 				BF7C111D210BD9CE001A700B /* NoteTableViewCell.swift in Sources */,
 				8429C9E41EAECD48004A5E2B /* NoteModel.swift in Sources */,

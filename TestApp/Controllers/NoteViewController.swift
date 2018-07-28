@@ -28,19 +28,30 @@ class NoteViewController: UIViewController {
                 }
             }
         }
-        
-        //Testing Date extension
-//        let myDate = Date()
-//        let dateStr = myDate.asString(style: .medium)
-//        print(dateStr)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.noteTableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     @IBAction func addNoteTapped(_ sender: Any) {
-        print("Add Note")
+        self.performSegue (withIdentifier:AppConstants.StoryBoard.AddNoteSegue, sender: self)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == AppConstants.StoryBoard.AddNoteSegue) {
+            if let destinationVC = segue.destination as? AddNoteViewController  {
+                //Pass ViewModel Instance
+                destinationVC.viewModel = viewModel
+            }
+        }
     }
 }
 

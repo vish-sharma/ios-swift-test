@@ -16,6 +16,6 @@ struct NoteModel: Decodable {
 }
 
 struct Note: Decodable {
-    let message: String
-    let date: String //Holds the Note creation date.
+    var message: String
+    var date: String //Holds the Note creation date.
 }
