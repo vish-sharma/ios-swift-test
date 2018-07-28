@@ -15,7 +15,7 @@ import UIKit
 
 class NotesViewModel: NSObject {
     var apiManager: NoteApiManager
-    var notesArray : NoteModel?
+    var notesArray : [Note]?
     
     override init() {
         apiManager = NoteApiManager()
@@ -27,9 +27,39 @@ class NotesViewModel: NSObject {
                 print("Failed to fetch Data")
                 return
             }
-            self.notesArray = result
+            if let noteArr = result?.notes {
+                self.notesArray = noteArr
+            }
             completion(true, nil)
         }
+    }
+    
+   //MARK: Table Delegate Wrapper
+    
+    func numberOfRows() -> Int {
+        if let count = self.notesArray?.count {
+            return count
+        }
+        return 1
+    }
+    
+    /*
+     * Method to fetch Note for Cell Indexpath.
+     * Compeltion handler pass Note Model object to cell,or Error
+     */
+    func getNoteForIndex(_ index:Int) -> Note?  {
+        
+        if self.notesArray != nil {
+            if let count = self.notesArray?.count,  let noteArr = self.notesArray  {
+                for noteIndex in 0 ..< count {
+                    if noteIndex == index {
+                        let note = noteArr[noteIndex]
+                        return note
+                    }
+                }
+            }
+        }
+        return nil
     }
     
 }

@@ -16,10 +16,6 @@ struct NoteModel: Decodable {
 }
 
 struct Note: Decodable {
-    let name: String
-    let inTime: String
-    let outTime: String
-    let address: String
-    let zipCode: String
+    let message: String
     let date: String //Holds the Note creation date.
 }

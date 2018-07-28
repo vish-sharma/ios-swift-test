@@ -17,6 +17,8 @@
 		BF7C1113210BA54E001A700B /* MockNotes.json in Resources */ = {isa = PBXBuildFile; fileRef = BF7C1112210BA54E001A700B /* MockNotes.json */; };
 		BF7C1116210BA582001A700B /* NoteApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C1115210BA582001A700B /* NoteApiManager.swift */; };
 		BF7C1118210BA869001A700B /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C1117210BA869001A700B /* NotesViewModel.swift */; };
+		BF7C111D210BD9CE001A700B /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C111B210BD9CE001A700B /* NoteTableViewCell.swift */; };
+		BF7C111E210BD9CE001A700B /* NoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF7C111C210BD9CE001A700B /* NoteTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		BF7C1112210BA54E001A700B /* MockNotes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockNotes.json; sourceTree = "<group>"; };
 		BF7C1115210BA582001A700B /* NoteApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteApiManager.swift; sourceTree = "<group>"; };
 		BF7C1117210BA869001A700B /* NotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
+		BF7C111B210BD9CE001A700B /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoteTableViewCell.swift; path = TestApp/Views/NoteTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		BF7C111C210BD9CE001A700B /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NoteTableViewCell.xib; path = TestApp/Views/NoteTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +68,9 @@
 		8429C9C51EAECCA8004A5E2B /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
+				BF7C111A210BD9B4001A700B /* Views */,
 				BF7C1114210BA563001A700B /* AppManagers */,
 				BF7C1111210B9D61001A700B /* ViewModels */,
-				BF7C1110210B9D49001A700B /* Views */,
 				BF7C110F210B9D3D001A700B /* HelperClasses */,
 				8429C9DB1EAECD0B004A5E2B /* Controllers */,
 				8429C9DC1EAECD0B004A5E2B /* Model */,
@@ -103,14 +107,6 @@
 			path = HelperClasses;
 			sourceTree = "<group>";
 		};
-		BF7C1110210B9D49001A700B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		BF7C1111210B9D61001A700B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +122,16 @@
 				BF7C1115210BA582001A700B /* NoteApiManager.swift */,
 			);
 			path = AppManagers;
+			sourceTree = "<group>";
+		};
+		BF7C111A210BD9B4001A700B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BF7C111B210BD9CE001A700B /* NoteTableViewCell.swift */,
+				BF7C111C210BD9CE001A700B /* NoteTableViewCell.xib */,
+			);
+			name = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +198,7 @@
 				8429C9D41EAECCA8004A5E2B /* LaunchScreen.storyboard in Resources */,
 				8429C9D11EAECCA8004A5E2B /* Assets.xcassets in Resources */,
 				BF7C1113210BA54E001A700B /* MockNotes.json in Resources */,
+				BF7C111E210BD9CE001A700B /* NoteTableViewCell.xib in Resources */,
 				8429C9CC1EAECCA8004A5E2B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,6 +215,7 @@
 				BF7C1118210BA869001A700B /* NotesViewModel.swift in Sources */,
 				BF7C1116210BA582001A700B /* NoteApiManager.swift in Sources */,
 				8429C9C71EAECCA8004A5E2B /* AppDelegate.swift in Sources */,
+				BF7C111D210BD9CE001A700B /* NoteTableViewCell.swift in Sources */,
 				8429C9E41EAECD48004A5E2B /* NoteModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

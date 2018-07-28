@@ -1,27 +1,19 @@
 {
 	"notes": [{
-			"name": "Vishal Sharma",
-			"inTime": "7:30 AM",
-			"outTime": "8:30 AM",
-			"address": "100 Montgomery St San Francisco CA",
-			"zipCode": "94103"
+            "message": "Visit the doctor.",
             "date": "Jul 27, 2018"
-		},
-		{
-			"name": "Carey Price",
-			"inTime": "9:30 AM",
-			"outTime": "11:30 AM",
-			"address": "200 St Laurent Blvd Montreal QC",
-			"zipCode": "H2W 2R2"
-            "date": "Jul 27, 2018"
-		},
-		{
-			"name": "P.K. Subban",
-			"inTime": "12:30 PM",
-			"outTime": "2:30 PM",
-			"address": "200 St Laurent Blvd Montreal QC",
-			"zipCode": "H2W 2R2"
-            "date": "Jul 27, 2018"
-		}
+		}, {
+			"message": "Prescription refill",
+            "date": "Jul 28, 2018"
+		}, {
+            "message": "Lab appointment",
+            "date": "Jul 29, 2018"
+		}, {
+              "message": "Follow up appointment",
+              "date": "Jul 29, 2018"
+        }, {
+              "message": "Collect Lab results",
+              "date": "Jul 30, 2018"
+        }
 	]
 }
