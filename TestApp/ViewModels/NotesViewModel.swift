@@ -16,12 +16,13 @@ import UIKit
 class NotesViewModel: NSObject {
     var apiManager: NoteApiManager
     var notesArray : [Note]?
+    var notesFilteredArray : [Note]?
     
     override init() {
         apiManager = NoteApiManager()
     }
     
-    func invokeApiCall (completion:(Bool, Error?) -> ()) {
+    public func invokeApiCall (completion:(Bool, Error?) -> ()) {
         apiManager.fetchNotesFromAPICall { (result, error) in
             guard error == nil else {
                 print("Failed to fetch Data")
@@ -29,6 +30,7 @@ class NotesViewModel: NSObject {
             }
             if let noteArr = result?.notes {
                 self.notesArray = noteArr
+                notesFilteredArray = notesArray
             }
             completion(true, nil)
         }
@@ -36,8 +38,8 @@ class NotesViewModel: NSObject {
     
    //MARK: Table Delegate Wrapper
     
-    func numberOfRows() -> Int {
-        if let count = self.notesArray?.count {
+    public func numberOfRows() -> Int {
+        if let count = self.notesFilteredArray?.count {
             return count
         }
         return 1
@@ -47,10 +49,10 @@ class NotesViewModel: NSObject {
      * Method to fetch Note for Cell Indexpath.
      * Compeltion handler pass Note Model object to cell,or Error
      */
-    func getNoteForIndex(_ index:Int) -> Note?  {
+    public func getNoteForIndex(_ index:Int) -> Note?  {
         
         if self.notesArray != nil {
-            if let count = self.notesArray?.count,  let noteArr = self.notesArray  {
+            if let count = self.notesFilteredArray?.count,  let noteArr = self.notesFilteredArray  {
                 for noteIndex in 0 ..< count {
                     if noteIndex == index {
                         let note = noteArr[noteIndex]
@@ -64,11 +66,30 @@ class NotesViewModel: NSObject {
     
     //MARK: Add/Delete Note
     
-    func addNewNote(_ newNote: Note) -> Void {
+    /*
+     * Method to Add new Notes.
+     * Appends new notes to Notes array
+     */
+    public func addNewNote(_ newNote: Note) {
         print(newNote.message)
         if newNote.message != "" {
-            self.notesArray?.append(newNote)
+            notesFilteredArray?.append(newNote)
+            notesArray?.append(newNote)
         }
+    }
+    
+    /*
+     * Method to filter Notes.
+     * Returns filtered notes with Notes filtered array
+     */
+    public func filterNotesArray(inputStr: String) {
+        guard !inputStr.isEmpty else {
+            notesFilteredArray = notesArray
+            return
+        }
+        notesFilteredArray = notesArray?.filter({ (note) -> Bool in
+            return note.message.lowercased().contains(inputStr.lowercased())
+        })
     }
     
 }

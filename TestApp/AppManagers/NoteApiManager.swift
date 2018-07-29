@@ -17,7 +17,7 @@ class NoteApiManager: NSObject {
      * In Real time, we generally use URLSession to fetch API response.
      */
     
-    func fetchNotesFromAPICall (completion:(NoteModel?, Error?)->Void) {
+    public func fetchNotesFromAPICall (completion:(NoteModel?, Error?)->Void) {
         
         let url = Bundle.main.url(forResource: "MockNotes", withExtension: "json")!
         

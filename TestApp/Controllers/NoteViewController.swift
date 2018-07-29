@@ -10,6 +10,7 @@ class NoteViewController: UIViewController {
 
     let viewModel = NotesViewModel()
     @IBOutlet weak var noteTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,7 @@ class NoteViewController: UIViewController {
         self.performSegue (withIdentifier:AppConstants.StoryBoard.AddNoteSegue, sender: self)
     }
     
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,6 +72,17 @@ extension NoteViewController: UITableViewDataSource {
         }
 
         return cell
+    }
+}
+
+extension NoteViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.filterNotesArray(inputStr: searchText)
+        noteTableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        
     }
 }
 
