@@ -10,8 +10,12 @@ class NoteViewController: UIViewController {
 
     let viewModel = NotesViewModel()
     var notesDataSource: NotesDataSource?
+    
     @IBOutlet weak var noteTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    var selectedNote: Note?
+    var selectedIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,20 +54,30 @@ class NoteViewController: UIViewController {
         noteTableView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if selectedNote != nil {
+            selectedNote = nil
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    /*
+     * Method to Display Alert Controller and handle the user selection
+     */
     private func selectNotesDataSoruce (completion:@escaping (NotesDataSource?) -> Void) {
         let alert = UIAlertController(title: "Load Notes Data", message: "Fetch Notes based upon User preference", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Core Data", style: .default, handler:{ [weak self] action in
-            print("Load Core data!")
             self?.notesDataSource = NotesDataSource.CoreData
             completion(self?.notesDataSource)
         }))
         alert.addAction(UIAlertAction(title: "Mock Response", style: .default, handler: { [weak self] action in
-            print("Load Mock response!")
             self?.notesDataSource = NotesDataSource.MockJson
             completion(self?.notesDataSource)
         }))
@@ -84,16 +98,27 @@ class NoteViewController: UIViewController {
             if let destinationVC = segue.destination as? AddNoteViewController  {
                 //Pass ViewModel Instance
                 destinationVC.viewModel = viewModel
+                if selectedNote != nil {
+                    destinationVC.existingNote = selectedNote
+                    destinationVC.existingNoteIndex = selectedIndex
+                }
             }
         }
     }
 }
 
-extension NoteViewController: UITableViewDataSource {
+extension NoteViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    /*
+     * Method to return Number of rows for Table view
+     */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
     
+    /*
+     * Method to display Cells based upon DataSource
+     */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteTableViewCell
@@ -114,9 +139,11 @@ extension NoteViewController: UITableViewDataSource {
         return cell
     }
     
+    /*
+     * Method to handle Cell Deletion
+     */
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("Deleted")
             viewModel.deleteNote(atIndex: indexPath.row)
             
             noteTableView.beginUpdates()
@@ -124,9 +151,32 @@ extension NoteViewController: UITableViewDataSource {
             noteTableView.endUpdates()
         }
     }
+    
+    /*
+     * Method to handle Cell selection based on DataSource
+     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if notesDataSource == NotesDataSource.CoreData {
+            //Core Data
+            if let note = viewModel.getNoteDataForIndex(indexPath.row) {
+                selectedNote = note
+            }
+        } else {
+            //Mock JSON
+            if let note = viewModel.getNoteForIndex(indexPath.row) {
+                selectedNote = note
+            }
+        }
+        selectedIndex = indexPath.row
+        self.performSegue (withIdentifier:AppConstants.StoryBoard.AddNoteSegue, sender: self)
+    }
 }
 
 extension NoteViewController: UISearchBarDelegate {
+    
+    /*
+     * Method to handle Search bar and filter DataSources based on user's entry
+     */
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if notesDataSource == NotesDataSource.MockJson {
             viewModel.filterNotesArray(inputStr: searchText)
@@ -135,10 +185,6 @@ extension NoteViewController: UISearchBarDelegate {
         }
         
         noteTableView.reloadData()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        
     }
 }
 

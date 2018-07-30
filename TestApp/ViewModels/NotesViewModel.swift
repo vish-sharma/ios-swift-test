@@ -23,10 +23,11 @@ class NotesViewModel: NSObject {
     var apiManager: NoteApiManager
     var dataSource: NotesDataSource?
     
+    //Mock Response Arrays
     var notesMockArray : [Note]?
     var notesMockFilteredArray : [Note]?
     
-    //Core Data Model Object
+    //Core Data Model Object Arrays
     var noteDataArray: [NSManagedObject]?
     var noteFilteredDataArray: [NSManagedObject]?
     
@@ -34,6 +35,9 @@ class NotesViewModel: NSObject {
         apiManager = NoteApiManager()
     }
     
+    /*
+     * Method to fetch Notes data from Mock JSON response
+     */
     public func invokeApiCall (noteDataSource:NotesDataSource, completion:(Bool, Error?) -> ()) {
         dataSource = noteDataSource
         apiManager.fetchNotesFromAPICall { (result, error) in
@@ -51,6 +55,9 @@ class NotesViewModel: NSObject {
     
    //MARK: Common Func
     
+    /*
+     * Wrapper method to return Number of rows for Table View
+     */
     public func numberOfRows() -> Int {
         if dataSource == NotesDataSource.CoreData {
             if let count = self.noteFilteredDataArray?.count {
@@ -94,7 +101,6 @@ class NotesViewModel: NSObject {
     
     public func addNoteToMockArray(_ newNote: Note) {
         
-        print(newNote.message)
         if newNote.message != "" {
 
             notesMockFilteredArray?.append(newNote)
@@ -172,7 +178,6 @@ extension NotesViewModel {
     /*
      * Method to Delete Note from Core Data.
      */
-    
     func deleteNoteFromCoreData(_ index: Int) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return

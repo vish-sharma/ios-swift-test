@@ -12,10 +12,20 @@ class AddNoteViewController: UIViewController {
 
     var viewModel = NotesViewModel()
     
+    //Properties to handle Editing of existing notes
+    var existingNote: Note?
+    var existingNoteIndex: Int?
+    
     @IBOutlet weak var noteTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Editing Existing notes
+        if existingNote != nil {
+            noteTextView.text = existingNote?.message
+        }
+        
         noteTextView.becomeFirstResponder()
     }
     
@@ -27,7 +37,9 @@ class AddNoteViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-
+    /*
+     * Method to handle Bar button items
+     */
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -40,18 +52,12 @@ class AddNoteViewController: UIViewController {
         //New note is nil
         let newNote: Note = Note(message: noteTextView.text, date: dateStr)
         viewModel.addNewNote(newNote)
-
+        
+        if existingNote != nil {
+            if let selectedNote = existingNoteIndex {
+                viewModel.deleteNote(atIndex: selectedNote)
+            }
+        }
         self.navigationController?.popViewController(animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

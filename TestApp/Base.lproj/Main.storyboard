@@ -60,7 +60,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Notes" id="K75-cn-ted">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="KQw-7O-s6d">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KQw-7O-s6d">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="addNoteTapped:" destination="BYZ-38-t0r" id="ugQ-KP-9m4"/>
