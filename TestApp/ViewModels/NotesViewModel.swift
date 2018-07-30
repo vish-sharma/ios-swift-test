@@ -110,6 +110,7 @@ class NotesViewModel: NSObject {
     
     public func deleteNoteFromMockArray(_ index: Int) {
         notesMockFilteredArray?.remove(at: index)
+        notesMockArray?.remove(at: index)
     }
     
     /*
@@ -160,11 +161,11 @@ extension NotesViewModel {
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "NoteObject", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: AppConstants.CoreData.NoteObjectEntity, in: managedContext)!
         
         let note = NSManagedObject(entity: entity, insertInto: managedContext)
-        note.setValue(newNote.message, forKey: "message")
-        note.setValue(newNote.date, forKey: "date")
+        note.setValue(newNote.message, forKey: AppConstants.CoreData.MessageAttribute)
+        note.setValue(newNote.date, forKey: AppConstants.CoreData.DateAttribute)
         
         do {
             try managedContext.save()
@@ -183,7 +184,7 @@ extension NotesViewModel {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "NoteObject")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: AppConstants.CoreData.NoteObjectEntity)
         
         if var dataArray = noteFilteredDataArray {
             for object in 0 ..< dataArray.count {
@@ -219,7 +220,7 @@ extension NotesViewModel {
                         if let noteArr = self.noteFilteredDataArray {
                             let note = noteArr[noteIndex]
                             
-                            let noteObject = Note(message: (note.value(forKeyPath: "message") as? String)!, date: (note.value(forKeyPath: "date") as? String)!)
+                            let noteObject = Note(message: (note.value(forKeyPath: AppConstants.CoreData.MessageAttribute) as? String)!, date: (note.value(forKeyPath: AppConstants.CoreData.DateAttribute) as? String)!)
                             
                             return noteObject
                         }
@@ -240,7 +241,7 @@ extension NotesViewModel {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "NoteObject")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: AppConstants.CoreData.NoteObjectEntity)
         do {
             noteDataArray = try managedContext.fetch(fetchRequest)
             noteFilteredDataArray = noteDataArray
@@ -262,7 +263,7 @@ extension NotesViewModel {
         }
         
         noteFilteredDataArray = noteDataArray?.filter({ (note) -> Bool in
-            let noteMessage = (note.value(forKeyPath: "message") as? String)!.lowercased()
+            let noteMessage = (note.value(forKeyPath: AppConstants.CoreData.MessageAttribute) as? String)!.lowercased()
             return noteMessage.contains(inputStr.lowercased())
         })
     }

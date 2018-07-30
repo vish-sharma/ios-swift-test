@@ -39,8 +39,8 @@ class NoteViewController: UIViewController {
         }
         
         //Register cell Xib with View Controller
-        noteTableView.register(UINib(nibName:"NoteTableViewCell",bundle:nil),
-                                    forCellReuseIdentifier: "NoteCell")
+        noteTableView.register(UINib(nibName:AppConstants.StoryBoard.NoteTableViewCell,bundle:nil),
+                                    forCellReuseIdentifier: AppConstants.StoryBoard.NoteCell)
         noteTableView.tableFooterView = UIView()
         
         
@@ -71,13 +71,13 @@ class NoteViewController: UIViewController {
      * Method to Display Alert Controller and handle the user selection
      */
     private func selectNotesDataSoruce (completion:@escaping (NotesDataSource?) -> Void) {
-        let alert = UIAlertController(title: "Load Notes Data", message: "Fetch Notes based upon User preference", preferredStyle: .alert)
+        let alert = UIAlertController(title: AppConstants.UIText.AlertTitle, message: AppConstants.UIText.AlertMessage, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Core Data", style: .default, handler:{ [weak self] action in
+        alert.addAction(UIAlertAction(title: AppConstants.UIText.AlertCoreButton, style: .default, handler:{ [weak self] action in
             self?.notesDataSource = NotesDataSource.CoreData
             completion(self?.notesDataSource)
         }))
-        alert.addAction(UIAlertAction(title: "Mock Response", style: .default, handler: { [weak self] action in
+        alert.addAction(UIAlertAction(title: AppConstants.UIText.AlertMockButton, style: .default, handler: { [weak self] action in
             self?.notesDataSource = NotesDataSource.MockJson
             completion(self?.notesDataSource)
         }))
@@ -121,7 +121,7 @@ extension NoteViewController: UITableViewDataSource, UITableViewDelegate {
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.StoryBoard.NoteCell, for: indexPath) as! NoteTableViewCell
         
         if notesDataSource == NotesDataSource.CoreData {
             //Core Data
